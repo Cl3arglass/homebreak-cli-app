@@ -1,5 +1,2 @@
-require "home_break/version"
-
-module HomeBreak
-  # Your
-end
+require_relative "./home_break/version"
+require_relative './home_break/cli'

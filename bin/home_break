@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Hello World"
+require './lib/home_break'
+
+HomeBreak::CLI.new.call
