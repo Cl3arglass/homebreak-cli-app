@@ -12,9 +12,7 @@ class HomeBreak::CLI
   def list_regional
     puts "Today's Regional Forecast for SF - San Mateo County"
     puts ""
-    puts "WNW swell, selective S swell, light winds today"
-    puts "New WNW swell mid week, light winds"
-    puts "More NW swell and S swell for weekend"
+    @forecast = HomeBreak::Region.today
     puts ""
   end
 
@@ -36,6 +34,8 @@ class HomeBreak::CLI
         puts "more info on spot 1"
       when "2"
         puts "more info on spot 2"
+      when "3"
+        puts "more info on spot 3"
       when "list"
         list_local
       # else
