@@ -19,11 +19,14 @@ class HomeBreak::CLI
   def list_local
     #and the rest of the regional spots
     @breaks = HomeBreak::Break.today
+    @breaks.each.with_index(1) do |beach, i|
+      puts "#{i}. #{beach.name}"
+    end
   end
 
   def menu
     puts "Which local break do you wanna check?"
-
+# update cli to use objects
     input = nil
     while input != "exit"
       puts "Enter number or type exit when you're done."
