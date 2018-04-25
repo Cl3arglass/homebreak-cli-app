@@ -22,6 +22,7 @@ class HomeBreak::CLI
     @breaks.each.with_index(1) do |beach, i|
       puts "#{i}. #{beach.name}"
     end
+    puts ""
   end
 
   def menu
@@ -32,17 +33,21 @@ class HomeBreak::CLI
       puts "Enter number or type exit when you're done."
       puts "To see the spots again type list."
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "more info on spot 1"
-      when "2"
-        puts "more info on spot 2"
-      when "3"
-        puts "more info on spot 3"
-      when "list"
+
+      if input.to_i > 0 && input.to_i <= 3
+        the_beach = @breaks[input.to_i-1]
+        puts ""
+        puts "#{the_beach.name}:"
+        puts "Height #{the_beach.height}"
+        puts "Period #{the_beach.period}"
+        puts "Wind #{the_beach.wind}"
+        puts "Tide #{the_beach.tide}"
+        puts ""
+      elsif input == "list"
+        puts ""
         list_local
-      # else
-      #   puts "Try again, mate."
+      elsif input != "exit"
+        puts "Try again, mate."
       end
     end
   end
