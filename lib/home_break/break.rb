@@ -22,12 +22,15 @@ class HomeBreak::Break
   end
 
   def self.scrape_OBO
-    # doc = Nokogiri::HTML(open(http://www.surfline.com/surf-report/ocean-beach-overview-northern-california_4127/))
+    doc = Nokogiri::HTML(open("http://www.surfline.com/surf-report/ocean-beach-overview-northern-california_4127/"))
+    binding.pry
     break_1 = self.new
-     break_1.name = "Ocean Beach Overview"
-     break_1.height = "5-7 ft"
-     break_1.period = "11s"
-     break_1.wind = "9 kts WSW (257˚)"
+     break_1.name = doc.search("h3")[6].text.split(' ')[3..-1].join(' ')
+     break_1.height = doc.search("h2").last.text
+     break_1.period = doc.css("span#observed-wave-description").last.text
+     break_1.period = break_1.period[1..-1]
+     break_1.period = break_1.period.lstrip
+     break_1.wind = doc.css("div#observed-spot-conditions").text
      break_1.tide = "3.0ft"
 
      break_1
