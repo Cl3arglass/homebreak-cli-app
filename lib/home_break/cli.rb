@@ -38,10 +38,9 @@ class HomeBreak::CLI
         the_beach = @breaks[input.to_i-1]
         puts ""
         puts "#{the_beach.name}:"
-        puts "Height #{the_beach.height}"
-        puts "Period #{the_beach.period}"
-        puts "Wind #{the_beach.wind}"
-        puts "Tide #{the_beach.tide}"
+        puts "#{the_beach.height}"
+        puts "#{the_beach.period}"
+        puts "#{the_beach.wind}"
         puts ""
       elsif input == "list"
         puts ""
