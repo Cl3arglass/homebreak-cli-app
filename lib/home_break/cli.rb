@@ -12,7 +12,9 @@ class HomeBreak::CLI
   def list_regional
     puts "Today's Regional Forecast for SF - San Mateo County"
     puts ""
-    @forecast = HomeBreak::Region.today
+    @forecast = HomeBreak::Region.today.each do |note|
+      puts "#{note}"
+    end
     puts ""
   end
 
