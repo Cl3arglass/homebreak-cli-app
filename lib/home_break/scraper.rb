@@ -1,10 +1,20 @@
 class HomeBreak::Scraper
 
   def self.scrape_today
+    self.scrape_REG
     self.scrape_OBO
     self.scrape_SOB
     self.scrape_PCL
   end
+
+  def self.scrape_REG
+   doc = Nokogiri::HTML(open("http://www.surfline.com/surf-forecasts/northern-california/sf-san-mateo-county_2957/#"))
+    description = doc.css('div.forecast-outlook').css('li').collect {|el| el.text}
+
+    HomeBreak::Region.new(description)
+    
+  end
+
   def self.scrape_OBO
     doc = Nokogiri::HTML(open("http://www.surfline.com/surf-report/ocean-beach-overview-northern-california_4127/"))
      name = doc.search("h3")[6].text.split(' ')[3..-1].join(' ')
