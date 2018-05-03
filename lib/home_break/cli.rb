@@ -2,6 +2,7 @@
 class HomeBreak::CLI
 
   def call
+    HomeBreak::Scraper.scrape_today
     puts "Welcome to HomeBreak!"
     list_regional
     list_local
@@ -20,7 +21,7 @@ class HomeBreak::CLI
 
   def list_local
     #and the rest of the regional spots
-    @breaks = HomeBreak::Break.today
+    @breaks = HomeBreak::Break.all
     @breaks.each.with_index(1) do |beach, i|
       puts "#{i}. #{beach.name}"
     end
